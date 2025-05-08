@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Am Sahal's Soul</title>
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6e48aa, #9d50bb);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .profile-img {
+            width: 100%;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            border: 5px solid #6e48aa;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .content {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #6e48aa;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .soul-qualities {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .quality-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 4px solid #9d50bb;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .quality-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .quality-card h3 {
+            color: #6e48aa;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #9d50bb;
+        }
+
+        .animated-text {
+            display: inline-block;
+            position: relative;
+        }
+
+        .animated-text::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: white;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.5s ease;
+        }
+
+        .animated-text:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(30deg);
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .sidebar,
+        body.dark-mode .content,
+        body.dark-mode .quality-card {
+            background: #1e1e1e;
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .quality-card {
+            background: #2a2a2a;
+            border-left-color: #9d50bb;
+        }
+
+        body.dark-mode h2 {
+            color: #9d50bb;
+        }
+
+        body.dark-mode footer {
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="dark-mode-toggle" id="darkModeToggle">🌓</button>
+        <div class="header-content">
+            <h1 class="animated-text">I Am Sahal's Soul</h1>
+            <p class="tagline">Exploring the essence of being through creativity and consciousness</p>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <img src="https://via.placeholder.com/300" alt="Sahal's Soul" class="profile-img pulse">
+            <h2>About This Soul</h2>
+            <p>Welcome to the digital manifestation of Sahal's inner world. This space represents the thoughts, emotions, and creative expressions that define this unique soul's journey.</p>
+            <h2>Soul Attributes</h2>
+            <ul>
+                <li>Creative</li>
+                <li>Introspective</li>
+                <li>Empathetic</li>
+                <li>Curious</li>
+                <li>Resilient</li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h2>Manifestations of This Soul</h2>
+            <p>Every soul expresses itself in different ways. Here are some of the ways Sahal's soul manifests in the world:</p>
+            
+            <div class="soul-qualities">
+                <div class="quality-card">
+                    <h3>Creative Writing</h3>
+                    <p>Poetry, short stories, and philosophical musings that flow from the depths of consciousness.</p>
+                </div>
+                <div class="quality-card">
+                    <h3>Visual Art</h3>
+                    <p>Drawings and digital creations that visualize the unseen landscapes of the mind.</p>
+                </div>
+                <div class="quality-card">
+                    <h3>Music</h3>
+                    <p>Melodies and rhythms that echo the emotional spectrum of the soul's journey.</p>
+                </div>
+                <div class="quality-card">
+                    <h3>Philosophy</h3>
+                    <p>Contemplations on existence, consciousness, and the nature of reality.</p>
+                </div>
+            </div>
+
+            <h2>Soul Journey Timeline</h2>
+            <div id="timeline">
+                <p>Loading the soul's journey...</p>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>Connect with Sahal's Soul</p>
+        <div class="social-links">
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="LinkedIn">💼</a>
+            <a href="#" aria-label="GitHub">💻</a>
+        </div>
+        <p>&copy; <span id="year"></span> I Am Sahal's Soul. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Dark mode toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            darkModeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode);
+                this.textContent = isDarkMode ? '🌞' : '🌓';
+            });
+
+            // Check for saved dark mode preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.textContent = '🌞';
+            }
+
+            // Load timeline data
+            const timelineData = [
+                { year: "1990", event: "Soul's earthly incarnation begins" },
+                { year: "2005", event: "First creative awakening - poetry and art emerge" },
+                { year: "2012", event: "Philosophical exploration deepens" },
+                { year: "2018", event: "Digital expression becomes a new medium" },
+                { year: "2023", event: "This digital soul space is created" }
+            ];
+
+            const timelineElement = document.getElementById('timeline');
+            if (timelineElement) {
+                timelineElement.innerHTML = '';
+                const timelineList = document.createElement('ul');
+                timelineList.style.listStyleType = 'none';
+                
+                timelineData.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.style.marginBottom = '1rem';
+                    listItem.style.paddingLeft = '1rem';
+                    listItem.style.borderLeft = '3px solid #9d50bb';
+                    
+                    const yearSpan = document.createElement('span');
+                    yearSpan.textContent = item.year + ': ';
+                    yearSpan.style.fontWeight = 'bold';
+                    yearSpan.style.color = '#9d50bb';
+                    
+                    const eventSpan = document.createElement('span');
+                    eventSpan.textContent = item.event;
+                    
+                    listItem.appendChild(yearSpan);
+                    listItem.appendChild(eventSpan);
+                    timelineList.appendChild(listItem);
+                });
+                
+                timelineElement.appendChild(timelineList);
+            }
+
+            // Animate quality cards on scroll
+            const qualityCards = document.querySelectorAll('.quality-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            qualityCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
